@@ -14,7 +14,7 @@
             <p class="text-faded mb-4">FASO EASY DOC  est une plateforme web qui permet de traiter 
             les demandes de documents administratifs à savoir le casier judiciaire et le certificat de nationalité. 
             Vous pouvez ainsi demander vos documents en ligne et les récuper à l'endroit le plus proche de chez vous.</p>
-            <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Essayer</a>
+            <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Voir nos services</a>
           </div>
         </div>
       </div>
@@ -30,18 +30,25 @@
         </div>
       </div>
       <div class="container">
-        <div class="row">
-          <div class="col-sm-6 text-center">
-            <div class="service-box mt-5 mx-auto">
-              <i class="fas fa-4x fa-gem text-primary mb-3 sr-icon-1"></i>
-              <h3 class="mb-3">Demande de casier judiciaire</h3>
+        <div class="row justify-content-center">
+          <div class="col-sm-5 mx-2 text-center">
+            <div class="service-box mt-5 mx-auto" >
+              <a class="mb-3 h3" th:href="@{'/casier'}">
+               <i class="fas fa-4x fa-gem text-primary mb-3 sr-icon-1"></i>
+               <br>
+               <span class="h3 mb-3">Casier judiciaire</span>
+              </a>
               <p class="text-muted mb-0">Demander votre casier judiciaire en ligne et le recuperer le lieu le plus proche de chez vous.</p>
             </div>
           </div>
-          <div class=" col-sm-6 text-center">
-            <div class="service-box mt-5 mx-auto">
-              <i class="fas fa-4x fa-paper-plane text-primary mb-3 sr-icon-2"></i>
-              <h3 class="mb-3">Demande de certificat de nationalité</h3>
+          <div class=" col-sm-5 mx-2 text-center">
+            <div class="service-box mt-5 mx-auto" >
+              
+              <a class="mb-3 h3" th:href="@{'/certificat'}">
+               <i class="fas fa-4x fa-paper-plane text-primary mb-3 sr-icon-2"></i>
+               <br>
+               <span class="h3 mb-3">  Certificat de nationalité</span>
+              </a>
               <p class="text-muted mb-0">Demander votre certificat de nationalité partout ou vous êtes.</p>
             </div>
           </div>

@@ -1,0 +1,46 @@
+<!DOCTYPE html  >
+<html xmlns:th="www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+layout:decorator="layout.html" lang="fr">
+
+  <head>
+
+   
+   <meta charset="utf-8">
+  </head>
+
+  <body id="page-top">
+   
+   <div layout:fragment="content">
+     <div class=" my-auto">
+        <!-- HEADER CONTENT -->
+        <div class="row  justify-content-center">
+          <div class="col-lg-10 mx-auto">
+            <h1 class="text-uppercase text-center">
+              <strong>Casier Judiciaire</strong>
+            </h1>
+          </div>
+        </div>
+        <!-- CONTENT DU CASIER -->
+        <div layout:fragment="casier_content" class="col-12">
+             <div class="row  mb-3 justify-content-center">
+                <p class="text-center h4">Deposer une demande ou suivre l'évolution de votre casier judicaire .</p>
+             </div>
+             
+	         <div class="row justify-content-center">
+	            <div class="col-sm-6 text-center">
+	                   <a class="btn btn-primary " th:href="@{'/services/casier/demande'}">Demander un casier</a>
+	            </div>
+	            
+	            <div class="col-sm-6 text-center">
+	                    <a class="btn btn-primary  " th:href="@{'/services/casier/suivre'}">Suivre mon dossier</a>
+	            </div>
+	        </div>
+        </div>
+        
+      </div>
+   </div>
+   
+  </body>
+
+</html>

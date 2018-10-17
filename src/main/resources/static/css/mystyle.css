@@ -1,0 +1,45 @@
+.mnav{
+	background-color: #424998;
+	font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+
+.f7{
+	font-weight: 700;
+}
+.f8{
+	font-weight: 800;
+}
+.header{
+	font-size: 2rem;
+	font-weight: 800;
+}
+#navbarResponsive a{
+	text-transform: uppercase;
+}
+
+html,body{
+ height: 100%;
+}
+
+
+#parent{
+  min-height: 100%;
+  position: relative;
+    
+}
+
+#content{
+    padding-bottom: 120px;
+}
+
+#footer{
+	width:100%;
+	background-color: #424998;
+	bottom:0;
+	position: absolute;
+	height: 120px;
+}
+

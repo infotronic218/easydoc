@@ -1,0 +1,42 @@
+<!DOCTYPE html  >
+<html xmlns:th="www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="fr">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://novatech-226.firebaseapp.com/images/logo.png">
+    <title>Faso Easy Doc</title>
+    <meta charset="utf-8">
+    <!-- Bootstrap core CSS -->
+     <link rel="stylesheet" th:href="@{'/css/mystyle.css'}">
+    <link rel="stylesheet" th:href="@{'/bootstrap/bootstrap.min.css'}">
+
+  </head>
+
+  <body >
+    
+    <div id="parent">
+       <div id="content">
+          <nav  th:replace="templates/header::navbar1"></nav>
+          <div layout:fragment="content"></div>
+       </div>
+       
+       <footer id="footer">
+         <div  th:replace="templates/header::footer"></div>
+      </footer>
+    </div>
+   
+    
+   
+    <!-- Bootstrap core JavaScript -->
+    
+    <script type="text/javascript" th:src="@{'/bootstrap/jquery-3.2.1.slim.min.js'}"></script>
+    <script type="text/javascript" th:src="@{'/bootstrap/popper.min.js'}"></script>
+    <script type="text/javascript" th:src="@{'/bootstrap/bootstrap.min.js'}"></script> 
+</body>
+
+</html>

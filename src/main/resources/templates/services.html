@@ -1,0 +1,56 @@
+<!DOCTYPE html  >
+<html xmlns:th="www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+layout:decorator="layout.html" lang="fr">
+
+  <head>
+
+   <meta charset="utf-8">
+
+  </head>
+
+  <body>
+  
+      <div layout:fragment="content" class="container-fluid ">
+          <div class="container " >
+              <div class="row mb-3 justify-content-center" >
+                 <div class="col-sm-8">
+                    <h1 class="header text-center text-uppercase   p-4"> 
+                     <strong>Nos Services</strong>
+                    </h1>
+                 </div>
+                 
+              </div>
+              
+              <!-- LES SERVICES -->
+              <div class="row mb-3 justify-content-center" style="min-height:400px;">
+                 <div class="col-sm-6 text-center">
+                    <h4 class=" text-center text-uppercase   px-4"> 
+                     <strong>Casiser Judiciaire</strong>
+                      
+                    </h4>
+                    <p class="text-center px-5 text-muted" style="font-size: 20px;">
+                    Demander votre extrait de caiser judiciaire partout ou vous êtes et le récupérer 
+                    à l'endroit le plus proche de chez vous.
+                    <p>
+                    
+                    <a href="/services/casier" class="btn btn-primary">En savoir plus</a>
+                 </div>
+                 
+                 <div class="col-sm-6 text-center">
+                    <h4 class=" text-center text-uppercase   px-4"> 
+                     <strong>Certificat de nationalité</strong>
+                    </h4>
+                    <p class="text-center text-muted px-5" style="font-size: 20px;">Demander votre extrait de votre certificat de nationalité en ligne et le récupérer 
+                    à l'endroit le plus proche de chez vous
+                    <p>
+                    <a href="/services/certificat" class="btn btn-primary">En savoir plus</a>
+                 </div>
+                 
+              </div>
+          </div>
+         
+      </div>
+  </body>
+
+</html>
