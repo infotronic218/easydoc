@@ -24,17 +24,17 @@ layout:decorator="layout.html" lang="fr">
         <!-- CONTENT DU CASIER -->
         <div layout:fragment="casier_content" class="col-12">
              <div class="row  mb-3 justify-content-center">
-                <p class="text-center h4">Deposer une demande ou suivre l'évolution de votre casier judicaire .</p>
+                <p class="text-center h5">Deposer une demande ou suivre l'évolution de votre casier judicaire .</p>
              </div>
              
              
 	         <div class="row justify-content-center">
 	            <div class="col-sm-6 text-center">
-	                   <a class="btn btn-primary " th:href="@{'/services/casier/demande'}">Demander un casier</a>
+	                   <a class="btn btn-primary m-2" th:href="@{'/services/casier/demande'}">Demander un casier</a>
 	            </div>
 	            
 	            <div class="col-sm-6 text-center">
-	                    <a class="btn btn-primary  " th:href="@{'/services/casier/suivre'}">Suivre mon dossier</a>
+	                    <a class="btn btn-primary  m-2" th:href="@{'/services/casier/suivre'}">Suivre mon dossier</a>
 	            </div>
 	        </div>
         </div>
