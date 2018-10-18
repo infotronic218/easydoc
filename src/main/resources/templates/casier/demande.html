@@ -14,89 +14,333 @@ layout:decorator="casier/casier.html" lang="fr">
    <div layout:fragment="casier_content" class="container-fluid">
        <div class="row">
          <div class="col-12">
-            <div class="card text-dark">
+            <div class="card text-dark mb-3">
                <div class="card-header">
                   <h4 class="text-center">Soumettre une demande</h4>
                </div>
                <div class="card-body">
-                  <div class="row justify-content-center">
-                     <div class="col-sm-6">
-                        <div class="row mb-2">
-			                 <div class="col-sm-4">
-			                   <label>Nom et prénom</label>
+                   <div class="row mb-3 dback p-2">
+                      <div class="col">
+                        <span th:if="${ etape ==1}" class="badge badge-primary h1">1</span>
+                        <span th:if="${etape !=1}"  th:class="${etape<1 ?'badge badge-light':'badge badge-success'}">1</span> Identité
+                      </div>
+                      <div class="col"> 
+                        <span th:if="${ etape ==2}" class="badge badge-primary h1">1</span>
+                        <span th:if="${etape !=2}"  th:class="${etape<2 ?'badge badge-light':'badge badge-success'}">2</span> Pièces justificatives
+                      </div>
+                      <div class="col"> 
+                         <span th:if="${ etape ==3}" class="badge badge-primary h1">1</span>
+                         <span th:if="${etape !=3}"  th:class="${etape<3 ?'badge badge-light':'badge badge-success'}">3</span> Confirmation</div>
+                      <div class="col"> 
+                          <span th:if="${ etape ==4}" class="badge badge-primary h1">1</span>
+                        <span th:if="${etape !=4}"  th:class="${etape<4 ?'badge badge-light':'badge badge-success'}">4</span> Etape 4
+                      </div>
+                   </div>
+	               <!-- ETAPE 1 -->
+	               <form th:if="${etape==1}"  method="post" action="demande/documents">
+	                  <div class="row justify-content-center">
+	                     <div class="col-sm-6">
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Nom de famille</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" placeholder="Entrez votre nom de famille"/>
+				                 </div>
+	                        </div>
+	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Prénom(s)</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" placeholder="Entrez votre prénom"/>
+				                 </div>
+	                        </div>
+	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Date de naissance</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" type="date" placeholder=""/>
+				                 </div>
+	                        </div>
+	                        
+	                        
+	                         <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Pays de naissance</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <select class="form-control" >
+				                       <option th:each="c:${countries}" th:selected="${c.code=='BF'? true:false}" th:value="${c.code}" th:label="${c.name}"></option>
+				                   </select>
+				                 </div>
+	                        </div>
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Lieu de naissance</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" type="text" placeholder="Entrez votre lieu de naissance"/>
+				                 </div>
+	                        </div>
+	                        
+	              
+	                     </div>
+	                     <div class="col-sm-6">
+	                     
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Nom et prénom du père</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" type="text" placeholder="Entrez votre le nom et prénom du père"/>
+				                 </div>
+	                        </div>
+	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Nom et prénom de la mère</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" type="text" placeholder="Entrez votre le nom et prénom de la mère"/>
+				                 </div>
+	                        </div>
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Email</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" type="email" placeholder="Entrez votre email"/>
+				                 </div>
+	                        </div>
+	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Numéro de téléphone</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" type="email" placeholder="Entrez votre numéro de téléphone"/>
+				                 </div>
+	                        </div>
+	                     </div>
+	                     <div class="row mb-2 justify-content-center">
+				                 <div class="col-sm-4 text-center">
+				                   <button class="btn btn-primary" type="submit">Etape Suivante</button>
+				                 </div>
+	                        </div>
+	                  </div>
+	               </form>
+	                <!-- ETAPE 1 -->
+	                <!-- ETAPE 2 -->
+	               <form th:if="${etape==2}"  method="post" action="confirmation">
+	                  <div class="row justify-content-center">
+	                     <div class="col-sm-6">
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Type de pièce d'identité</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <select class="form-control" >
+				                    <option>CNIB</option>
+				                    <option>PASSPORT</option>
+				                   </select>
+				                 </div>
+	                        </div>
+	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Numéro de la pièce d'identité</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" placeholder="Entrez le numéro de la pièce d'identité"/>
+				                 </div>
+	                        </div>
+	              
+	                     </div>
+	                     <div class="col-sm-6">
+	                     
+	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Document d'identité</label>
+				                 </div>
+				                 <div class="col-sm-8"> 
+				                   <input class="form-control" type="file" />
+				                 </div>
+	                        </div>
+	                        
+	                     </div>
+	                     <div class="row mb-2">
+				                 <div class="col-12">
+				                   <button class="btn btn-primary" type="submit">Etape Suivante</button>
+				                 </div>
+				                 <div class="col-sm-8"> 
+				                   
+				                 </div>
+	                        </div>
+	                  </div>
+	               </form>
+	                <!-- ETAPE 2 -->
+	                <!-- ETAPE 3 -->
+	               <form th:if="${etape==3}"  method="post" action="save">
+	                <div class="row justify-content-center">
+	                  <h3 class="text-center">Identité</h3>
+	                </div>
+	                  <div class="row justify-content-center">
+	                     <div class="col-sm-6">
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Nom de famille</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input readonly="readonly" class="form-control" placeholder="Entrez votre nom de famille"/>
+				                 </div>
+	                        </div>
+	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Prénom(s)</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" placeholder="Entrez votre prénom"/>
+				                 </div>
+	                        </div>
+	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Date de naissance</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" type="date" placeholder=""/>
+				                 </div>
+	                        </div>
+	                        
+	                        
+	                         <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Pays de naissance</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <select class="form-control" >
+				                       <option th:each="c:${countries}" th:selected="${c.code=='BF'? true:false}" th:value="${c.code}" th:label="${c.name}"></option>
+				                   </select>
+				                 </div>
+	                        </div>
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Lieu de naissance</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" type="text" placeholder="Entrez votre lieu de naissance"/>
+				                 </div>
+	                        </div>
+	                        
+	              
+	                     </div>
+	                     <div class="col-sm-6">
+	                     
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Nom et prénom du père</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" type="text" placeholder="Entrez votre le nom et prénom du père"/>
+				                 </div>
+	                        </div>
+	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Nom et prénom de la mère</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" type="text" placeholder="Entrez votre le nom et prénom de la mère"/>
+				                 </div>
+	                        </div>
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Email</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" type="email" placeholder="Entrez votre email"/>
+				                 </div>
+	                        </div>
+	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Numéro de téléphone</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" type="email" placeholder="Entrez votre numéro de téléphone"/>
+				                 </div>
+	                        </div>
+	                         
+	                     </div>
+	                  </div>
+	                  
+		               <div class="row mb-3 justify-content-center">
+		                  <h3 class="text-center">Pièces justificatives</h3>
+		                  <div class="col-12">
+		                    <div class="row justify-content-center">
+	                     <div class="col-sm-6">
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Type de pièce d'identité</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <select class="form-control" >
+				                    <option>CNIB</option>
+				                    <option>PASSPORT</option>
+				                   </select>
+				                 </div>
+	                        </div>
+	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Numéro de la pièce d'identité</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" placeholder="Entrez le numéro de la pièce d'identité"/>
+				                 </div>
+	                        </div>
+	              
+	                     </div>
+	                     <div class="col-sm-6">
+	                     
+	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Document d'identité</label>
+				                 </div>
+				                 <div class="col-sm-8"> 
+				                   <input class="form-control" type="file" />
+				                 </div>
+	                        </div>
+	                     </div>
+	                  </div>
+		                  </div>
+		               </div>
+		               
+		               <div class="row mb-2 justify-content-center">
+			                 <div class="col-sm-4 text-center">
+			                   <button class="btn btn-primary" type="submit">Valider</button>
 			                 </div>
-			                 <div class="col-sm-8">
-			                   <input class="form-control" placeholder="Entrez votre nom et prénom"/>
-			                 </div>
-                        </div>
-                        
-                        <div class="row mb-2">
-			                 <div class="col-sm-4">
-			                   <label>Date de naissance</label>
-			                 </div>
-			                 <div class="col-sm-8">
-			                   <input class="form-control" type="date" placeholder=""/>
-			                 </div>
-                        </div>
-                        
-                        <div class="row mb-2">
-			                 <div class="col-sm-4">
-			                   <label>Lieu de naissance</label>
-			                 </div>
-			                 <div class="col-sm-8">
-			                   <input class="form-control" type="text" placeholder="Entrez votre lieu de naissance"/>
-			                 </div>
-                        </div>
-                        <div class="row mb-2">
-			                 <div class="col-sm-4">
-			                   <label>Pays de naissance</label>
-			                 </div>
-			                 <div class="col-sm-8">
-			                   <input class="form-control" type="text" placeholder="Entrez votre le pays de naissance"/>
-			                 </div>
-                        </div>
-              
-                     </div>
-                     <div class="col-sm-6">
-                        <div class="row mb-2">
-			                 <div class="col-sm-4">
-			                   <label>Email</label>
-			                 </div>
-			                 <div class="col-sm-8">
-			                   <input class="form-control" placeholder="Entrez votre email"/>
-			                 </div>
-                        </div>
-                        
-                        <div class="row mb-2">
-			                 <div class="col-sm-4">
-			                   <label>Document d'identité</label>
-			                 </div>
-			                 <div class="col-sm-8"> 
-			                   <input class="form-control" type="file" placeholder="Entrez le pays de naissance"/>
-			                 </div>
-                        </div>
-                        
-                          <div class="row mb-2">
-			                 <div class="col-sm-4">
-			                   <label class="form-control-label">Accepter termes et les conditions d'utilisations</label>
-			                 </div>
-			                 <div class="col-sm-8"> 
-			                   <input  type="checkbox" placeholder="Entrez le pays de naissance"/>
-			                 </div>
-                        </div>
-                        
-                        <div class="row mb-2">
-			                 <div class="col-sm-4">
-			                   <button class="btn btn-warning">Enregister</button>
-			                 </div>
-			                 <div class="col-sm-8"> 
-			                   
-			                 </div>
-                        </div>
-                        
-                     </div>
-                  </div>
-               </div>
+	                  </div>
+	               </form>
+	               <!-- ETAPE 3 -->
+	               <!-- ETAPE 4  -->
+	               <div th:if="${etape==4}" class="row justify-content-center">
+	                 <div class="col-6 bg-warning">
+	                   <h3 class="text-success text-center">Demande enrégistrée !</h3>
+	                   <p>Votre demande a été enregistré avec succès il sera traité dans le bref delai.
+	                    Un message vous a été envoyé sur votre adresse email, il contient le mot de passe avec laquelle vous devez vous connectez pour suivre l'évolution de votre dossier. </p>
+	                   <p>Pour plus d'information veuillez contactez l'administrateur du service<P>
+	                 </div>
+	               </div>
+	               <!-- ETAPE 4 -->
+                </div>
              </div>
          </div>
        </div>
