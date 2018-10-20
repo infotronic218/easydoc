@@ -37,7 +37,7 @@ layout:decorator="casier/casier.html" lang="fr">
                       </div>
                    </div>
 	               <!-- ETAPE 1 -->
-	               <form th:if="${etape==1}"  method="post" action="demande/documents">
+	               <form th:if="${etape==1}" th:object="${information}" method="post" action="demande/documents">
 	                  <div class="row justify-content-center">
 	                     <div class="col-sm-6">
 	                        <div class="row mb-2">
@@ -45,7 +45,7 @@ layout:decorator="casier/casier.html" lang="fr">
 				                   <label>Nom de famille</label>
 				                 </div>
 				                 <div class="col-sm-8">
-				                   <input class="form-control" placeholder="Entrez votre nom de famille"/>
+				                   <input class="form-control" th:field="*{nom}" required="required" placeholder="Entrez votre nom de famille"/>
 				                 </div>
 	                        </div>
 	                        
@@ -54,7 +54,7 @@ layout:decorator="casier/casier.html" lang="fr">
 				                   <label>Prénom(s)</label>
 				                 </div>
 				                 <div class="col-sm-8">
-				                   <input class="form-control" placeholder="Entrez votre prénom"/>
+				                   <input class="form-control" required="required" th:field="*{prenom}" placeholder="Entrez votre prénom"/>
 				                 </div>
 	                        </div>
 	                        
@@ -63,7 +63,7 @@ layout:decorator="casier/casier.html" lang="fr">
 				                   <label>Date de naissance</label>
 				                 </div>
 				                 <div class="col-sm-8">
-				                   <input class="form-control" type="date" placeholder=""/>
+				                   <input class="form-control" required="required" th:field="*{dateNaissance}" type="date" />
 				                 </div>
 	                        </div>
 	                        
@@ -73,8 +73,9 @@ layout:decorator="casier/casier.html" lang="fr">
 				                   <label>Pays de naissance</label>
 				                 </div>
 				                 <div class="col-sm-8">
-				                   <select class="form-control" >
-				                       <option th:each="c:${countries}" th:selected="${c.code=='BF'? true:false}" th:value="${c.code}" th:label="${c.name}"></option>
+				                   <select  required="required" th:field="*{paysNaissance}" class="form-control" >
+				                       <option value="" selected disabled>Selectionner un votre pays de naissance</option>
+				                       <option th:each="c:${countries}"  th:selected="${c.code=='BF'? true:false}" th:value="${c.name}" th:label="${c.name}"></option>
 				                   </select>
 				                 </div>
 	                        </div>
@@ -83,7 +84,7 @@ layout:decorator="casier/casier.html" lang="fr">
 				                   <label>Lieu de naissance</label>
 				                 </div>
 				                 <div class="col-sm-8">
-				                   <input class="form-control" type="text" placeholder="Entrez votre lieu de naissance"/>
+				                   <input class="form-control" required="required" th:field="*{lieuNaissance}" type="text" placeholder="Entrez votre lieu de naissance"/>
 				                 </div>
 	                        </div>
 	                        
@@ -96,7 +97,7 @@ layout:decorator="casier/casier.html" lang="fr">
 				                   <label>Nom et prénom du père</label>
 				                 </div>
 				                 <div class="col-sm-8">
-				                   <input class="form-control" type="text" placeholder="Entrez votre le nom et prénom du père"/>
+				                   <input class="form-control" required="required" type="text" th:field="*{nomPere}" placeholder="Entrez votre le nom et prénom du père"/>
 				                 </div>
 	                        </div>
 	                        
@@ -105,7 +106,7 @@ layout:decorator="casier/casier.html" lang="fr">
 				                   <label>Nom et prénom de la mère</label>
 				                 </div>
 				                 <div class="col-sm-8">
-				                   <input class="form-control" type="text" placeholder="Entrez votre le nom et prénom de la mère"/>
+				                   <input class="form-control" required="required" type="text" th:field="*{nomMere}" placeholder="Entrez votre le nom et prénom de la mère"/>
 				                 </div>
 	                        </div>
 	                        <div class="row mb-2">
@@ -113,7 +114,7 @@ layout:decorator="casier/casier.html" lang="fr">
 				                   <label>Email</label>
 				                 </div>
 				                 <div class="col-sm-8">
-				                   <input class="form-control" type="email" placeholder="Entrez votre email"/>
+				                   <input class="form-control" required="required" name="email" type="email" placeholder="Entrez votre email"/>
 				                 </div>
 	                        </div>
 	                        
@@ -122,20 +123,22 @@ layout:decorator="casier/casier.html" lang="fr">
 				                   <label>Numéro de téléphone</label>
 				                 </div>
 				                 <div class="col-sm-8">
-				                   <input class="form-control" type="email" placeholder="Entrez votre numéro de téléphone"/>
+				                   <input class="form-control" required="required" th:field="*{telephone}" type="number" placeholder="Entrez votre numéro de téléphone"/>
 				                 </div>
 	                        </div>
 	                     </div>
 	                     <div class="row mb-2 justify-content-center">
-				                 <div class="col-sm-4 text-center">
-				                   <button class="btn btn-primary" type="submit">Etape Suivante</button>
-				                 </div>
+	                             
+				                 
+				                   <button class="btn btn-primary mx-2 m-1" onclick="history.back()" type="button">Retour</button>
+				                   <button class="btn btn-primary m-1" type="submit">Etape Suivante</button>
+				                 
 	                        </div>
 	                  </div>
 	               </form>
 	                <!-- ETAPE 1 -->
 	                <!-- ETAPE 2 -->
-	               <form th:if="${etape==2}"  method="post" action="confirmation">
+	               <form th:if="${etape==2}" th:object="${document}"  method="post" action="confirmation" enctype="multipart/form-data">
 	                  <div class="row justify-content-center">
 	                     <div class="col-sm-6">
 	                        <div class="row mb-2">
@@ -143,9 +146,10 @@ layout:decorator="casier/casier.html" lang="fr">
 				                   <label>Type de pièce d'identité</label>
 				                 </div>
 				                 <div class="col-sm-8">
-				                   <select class="form-control" >
-				                    <option>CNIB</option>
-				                    <option>PASSPORT</option>
+				                   <select required="required" th:field="*{typePiece}" class="form-control" >
+				                    <option value="" selected disabled>Selectionner un type</option>
+				                    <option value="CNIB">CNIB</option>
+				                    <option value="PASSPORT">PASSPORT</option>
 				                   </select>
 				                 </div>
 	                        </div>
@@ -155,7 +159,7 @@ layout:decorator="casier/casier.html" lang="fr">
 				                   <label>Numéro de la pièce d'identité</label>
 				                 </div>
 				                 <div class="col-sm-8">
-				                   <input class="form-control" placeholder="Entrez le numéro de la pièce d'identité"/>
+				                   <input class="form-control" required="required" th:field="*{numero}" placeholder="Entrez le numéro de la pièce d'identité"/>
 				                 </div>
 	                        </div>
 	              
@@ -168,14 +172,15 @@ layout:decorator="casier/casier.html" lang="fr">
 				                   <label>Document d'identité</label>
 				                 </div>
 				                 <div class="col-sm-8"> 
-				                   <input class="form-control" type="file" />
+				                   <input class="form-control" required="required" th:field="*{file}" type="file" />
 				                 </div>
 	                        </div>
 	                        
 	                     </div>
 	                     <div class="row mb-2">
 				                 <div class="col-12">
-				                   <button class="btn btn-primary" type="submit">Etape Suivante</button>
+				                    <button class="btn btn-primary mx-2" type="submit">Etape précedente</button>
+				                    <button class="btn btn-primary mx-2" type="submit">Etape suivante</button>
 				                 </div>
 				                 <div class="col-sm-8"> 
 				                   
@@ -185,18 +190,18 @@ layout:decorator="casier/casier.html" lang="fr">
 	               </form>
 	                <!-- ETAPE 2 -->
 	                <!-- ETAPE 3 -->
-	               <form th:if="${etape==3}"  method="post" action="save">
+	               <form th:if="${etape==3}"   method="post" action="save">
 	                <div class="row justify-content-center">
 	                  <h3 class="text-center">Identité</h3>
 	                </div>
-	                  <div class="row justify-content-center">
+	                  <div th:if="${session.information!=null}" class="row justify-content-center">
 	                     <div class="col-sm-6">
 	                        <div class="row mb-2">
 				                 <div class="col-sm-4">
 				                   <label>Nom de famille</label>
 				                 </div>
 				                 <div class="col-sm-8">
-				                   <input readonly="readonly" class="form-control" placeholder="Entrez votre nom de famille"/>
+				                   <input readonly="readonly" th:value="${session.information.nom}" class="form-control" />
 				                 </div>
 	                        </div>
 	                        
@@ -205,7 +210,7 @@ layout:decorator="casier/casier.html" lang="fr">
 				                   <label>Prénom(s)</label>
 				                 </div>
 				                 <div class="col-sm-8">
-				                   <input class="form-control" placeholder="Entrez votre prénom"/>
+				                   <input class="form-control" th:value="${session.information.prenom}" readonly="readonly" />
 				                 </div>
 	                        </div>
 	                        
@@ -214,7 +219,7 @@ layout:decorator="casier/casier.html" lang="fr">
 				                   <label>Date de naissance</label>
 				                 </div>
 				                 <div class="col-sm-8">
-				                   <input class="form-control" type="date" placeholder=""/>
+				                   <input class="form-control" th:value="${#dates.format(session.information.dateNaissance,'dd/MM/yyyy')}" type="text" readonly="readonly" />
 				                 </div>
 	                        </div>
 	                        
@@ -224,9 +229,8 @@ layout:decorator="casier/casier.html" lang="fr">
 				                   <label>Pays de naissance</label>
 				                 </div>
 				                 <div class="col-sm-8">
-				                   <select class="form-control" >
-				                       <option th:each="c:${countries}" th:selected="${c.code=='BF'? true:false}" th:value="${c.code}" th:label="${c.name}"></option>
-				                   </select>
+				                   <input class="form-control" type="text" th:value="${session.information.paysNaissance}" readonly="readonly" />
+				                     
 				                 </div>
 	                        </div>
 	                        <div class="row mb-2">
@@ -234,7 +238,7 @@ layout:decorator="casier/casier.html" lang="fr">
 				                   <label>Lieu de naissance</label>
 				                 </div>
 				                 <div class="col-sm-8">
-				                   <input class="form-control" type="text" placeholder="Entrez votre lieu de naissance"/>
+				                   <input class="form-control"  type="text" th:value="${session.information.lieuNaissance}" readonly="readonly"/>
 				                 </div>
 	                        </div>
 	                        
@@ -247,7 +251,7 @@ layout:decorator="casier/casier.html" lang="fr">
 				                   <label>Nom et prénom du père</label>
 				                 </div>
 				                 <div class="col-sm-8">
-				                   <input class="form-control" type="text" placeholder="Entrez votre le nom et prénom du père"/>
+				                   <input class="form-control" type="text" th:value="${session.information.nomPere}" readonly="readonly"/>
 				                 </div>
 	                        </div>
 	                        
@@ -256,7 +260,7 @@ layout:decorator="casier/casier.html" lang="fr">
 				                   <label>Nom et prénom de la mère</label>
 				                 </div>
 				                 <div class="col-sm-8">
-				                   <input class="form-control" type="text" placeholder="Entrez votre le nom et prénom de la mère"/>
+				                   <input class="form-control" type="text" th:value="${session.information.nomMere}" readonly="readonly"/>
 				                 </div>
 	                        </div>
 	                        <div class="row mb-2">
@@ -264,7 +268,7 @@ layout:decorator="casier/casier.html" lang="fr">
 				                   <label>Email</label>
 				                 </div>
 				                 <div class="col-sm-8">
-				                   <input class="form-control" type="email" placeholder="Entrez votre email"/>
+				                   <input class="form-control" type="email" th:value="${session.email}" readonly="readonly"/>
 				                 </div>
 	                        </div>
 	                        
@@ -273,14 +277,14 @@ layout:decorator="casier/casier.html" lang="fr">
 				                   <label>Numéro de téléphone</label>
 				                 </div>
 				                 <div class="col-sm-8">
-				                   <input class="form-control" type="email" placeholder="Entrez votre numéro de téléphone"/>
+				                   <input class="form-control" type="tel" readonly="readonly" th:value="${session.information.telephone}"/>
 				                 </div>
 	                        </div>
 	                         
 	                     </div>
 	                  </div>
 	                  
-		               <div class="row mb-3 justify-content-center">
+		               <div th:if="${session.document!=null}" class="row mb-3 justify-content-center">
 		                  <h3 class="text-center">Pièces justificatives</h3>
 		                  <div class="col-12">
 		                    <div class="row justify-content-center">
@@ -290,10 +294,7 @@ layout:decorator="casier/casier.html" lang="fr">
 				                   <label>Type de pièce d'identité</label>
 				                 </div>
 				                 <div class="col-sm-8">
-				                   <select class="form-control" >
-				                    <option>CNIB</option>
-				                    <option>PASSPORT</option>
-				                   </select>
+				                    <input class="form-control" th:value="${session.document.typePiece}" readonly="readonly"/>
 				                 </div>
 	                        </div>
 	                        
@@ -302,20 +303,18 @@ layout:decorator="casier/casier.html" lang="fr">
 				                   <label>Numéro de la pièce d'identité</label>
 				                 </div>
 				                 <div class="col-sm-8">
-				                   <input class="form-control" placeholder="Entrez le numéro de la pièce d'identité"/>
+				                   <input class="form-control" th:value="${session.document.numero}" readonly="readonly"/>
 				                 </div>
 	                        </div>
 	              
 	                     </div>
 	                     <div class="col-sm-6">
-	                     
-	                        
 	                        <div class="row mb-2">
 				                 <div class="col-sm-4">
 				                   <label>Document d'identité</label>
 				                 </div>
 				                 <div class="col-sm-8"> 
-				                   <input class="form-control" type="file" />
+				                   <input class="form-control" th:value="${session.document.file.originalFilename}" type="text" readonly="readonly" />
 				                 </div>
 	                        </div>
 	                     </div>
@@ -332,11 +331,26 @@ layout:decorator="casier/casier.html" lang="fr">
 	               <!-- ETAPE 3 -->
 	               <!-- ETAPE 4  -->
 	               <div th:if="${etape==4}" class="row justify-content-center">
-	                 <div class="col-6 bg-warning">
-	                   <h3 class="text-success text-center">Demande enrégistrée !</h3>
-	                   <p>Votre demande a été enregistré avec succès il sera traité dans le bref delai.
-	                    Un message vous a été envoyé sur votre adresse email, il contient le mot de passe avec laquelle vous devez vous connectez pour suivre l'évolution de votre dossier. </p>
-	                   <p>Pour plus d'information veuillez contactez l'administrateur du service<P>
+	                 <div class="col-6 border-circle">
+	                    <div class="card-header">
+	                        <div class="row mb-2justify-content-center">
+	                          <div class="col-12">
+	                               <h3 class="text-success text-center">Demande enrégistrée !</h3>
+				                   <p>Votre demande a été enregistré avec succès il sera traité dans le bref delai.
+				                    Un message vous a été envoyé sur votre adresse email, il contient le mot de passe avec laquelle vous devez vous connectez pour suivre l'évolution de votre dossier. </p>
+				                   <p>Pour plus d'information veuillez contactez l'administrateur du service .<P>
+	                          </div>		                   
+	                        </div>
+	                        <div class="row mb-2">
+	                             <div class="col-sm-12 text-center">
+	                             <p class="text-primary"> Cliquez sur le lien sous dessous pour se connecter </p>
+	                               <a class="btn btn-primary mx-3" href="/services/casier/suivre">Suivre ma demande</a>
+	                             </div>
+	                             
+	                             
+	                        </div>
+	                    </div>
+	                   
 	                 </div>
 	               </div>
 	               <!-- ETAPE 4 -->

@@ -1,0 +1,36 @@
+<!DOCTYPE html  >
+<html xmlns:th="www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+layout:decorator="layout.html" lang="fr">
+
+  <head>
+
+   <meta charset="utf-8">
+
+  </head>
+
+  <body>
+  
+      <div layout:fragment="content" class="container-fluid">
+          <div class="container " >
+              <div class="row m-4 justify-content-center" style="min-height:400px;">
+                 <div class="col-sm-8">
+                    <div class="jumbotron">
+						  <h1 class="display-4 text-center text-danger">Oups !</h1>
+						  <p class=" text-danger">Contenu non trouvé </p>
+						  <p class=" text-danger">Le contenu que vous cherchez n'a pas été trouvé. Veuillez vérifier votre requette.</p>
+						  <hr class="my-4">
+						  
+						  <p class="lead text-center">
+						    
+						    <a class="btn btn-primary btn-lg" href="/" role="button" >Retour à l'acceuil</a>
+						  </p>
+					</div>
+                 </div>
+              </div>
+          </div>
+         
+      </div>
+  </body>
+
+</html>

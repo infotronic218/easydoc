@@ -1,0 +1,70 @@
+<!DOCTYPE html  >
+<html xmlns:th="www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+layout:decorator="casier/casier.html" lang="fr">
+
+  <head>
+
+   
+   <meta charset="utf-8">
+  </head>
+
+  <body id="page-top">
+   
+        <div layout:fragment="casier_content" class="col-12">
+             <div class="row  mb-3 justify-content-center">
+                 <div class="col-sm-6">
+                    <div class="card">
+                      <div class="card-header">
+                          <h4 class="text-center">Suivie de demande de casier judicaire</h4>
+                      </div>
+                      <div class="card-body">
+                        <div class="row mb-2 mx-2">
+                           <p>Pour pouvoir suivre l'évolution de votre dossier il faut vous connecter avec 
+                        votre adresse mail et votre code de la demande.
+                           </p>
+                        </div>
+                        <form action="/user/connecter" method="post">
+                        <div class="row mb-3">
+			                 <div class="col-sm-4">
+			                   <label>Email</label>
+			                 </div>
+			                 <div class="col-sm-8">
+			                   <input class="form-control" type="email" placeholder="Entrez votre adresse mail"/>
+			                 </div>
+	                    </div>
+	                    <div class="row mb-3">
+			                 <div class="col-sm-4">
+			                   <label>Mot de passe</label>
+			                 </div>
+			                 <div class="col-sm-8">
+			                   <input class="form-control" type="password" placeholder="Entrez votre mot de passe"/>
+			                 </div>
+	                    </div>
+	                    <div class="row mb-3">
+			                 <div class="col-sm-4">
+			                   <label>Comfirmation du mot de passe <span style="color:red; font-size: 24px;">*</span></label>
+			                 </div>
+			                 <div class="col-sm-8">
+			                   <input class="form-control" type="password" placeholder="Repétez votre mot de passe"/>
+			                 </div>
+	                    </div>
+	                    <div class="row mb-3">
+			                 <div class="col-sm-4">
+			                   <button class="btn btn-primary">Connecter</button>
+			                 </div>
+			                 <div class="col-sm-8">
+			                   
+			                 </div>
+	                    </div>
+	                    </form>
+                      </div>
+                    </div>
+                 </div>
+             </div>
+        </div>
+        
+   
+  </body>
+
+</html>
