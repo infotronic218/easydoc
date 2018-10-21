@@ -37,11 +37,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.inMemoryAuthentication().withUser("admin").password("1234").roles("ADMIN");
-		/*String roleQuery="SELECT user_email as  principal, roles_name as role   FROM users_roles  WHERE user_email=? ";
+		String roleQuery="SELECT user_email as  principal, roles_name as role   FROM users_roles  WHERE user_email=? ";
 		String userQuery ="SELECT email as principal, password as credentials, active  FROM users WHERE email=?";
 		auth.jdbcAuthentication().dataSource(dataSource)
 		.usersByUsernameQuery(userQuery)
-		.authoritiesByUsernameQuery(roleQuery).passwordEncoder(passwordEncoder());*/
+		.authoritiesByUsernameQuery(roleQuery).passwordEncoder(passwordEncoder());
 	}
 
 

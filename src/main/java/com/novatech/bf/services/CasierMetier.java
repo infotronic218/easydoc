@@ -2,6 +2,7 @@ package com.novatech.bf.services;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import javax.mail.MessagingException;
@@ -70,6 +71,7 @@ public class CasierMetier {
 					+ " été enregistré avec succès. Le code de vore demande est : "+pass
 					+ " .; Merci pour votre confiance !";
 			send(email, "Service Casier judiciaire", "Confirmation de demande de caiser judiciaire", body);
+			session.invalidate();
 			return true;
 			
 		}else {
@@ -78,6 +80,16 @@ public class CasierMetier {
 		
 	}
 	
+	public Demande findByEmailAndPassword(String email, String password) {
+		List<Demande>list = demandRepo.findByEmail(email);
+		Demande dm = null;
+		for(Demande d : list)
+		{
+			if(encoder.matches(password, d.getPassword()))
+				dm = d;
+		}
+		return dm;
+	}
 	
 	public String generatePass(int length) {
 		char [] list= {'0','1','3','4','5','6','7',

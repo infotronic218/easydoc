@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.novatech.bf.dao.RepositoryDemande;
 import com.novatech.bf.dao.RepositoryType;
+import com.novatech.bf.entities.Demande;
 import com.novatech.bf.entities.Document;
 import com.novatech.bf.entities.Information;
+import com.novatech.bf.entities.Type;
 import com.novatech.bf.services.CasierMetier;
 import com.novatech.bf.services.ContryCodeManager;
 
@@ -31,6 +34,10 @@ public class Casier {
 	private HttpSession session;
 	@Autowired
 	private RepositoryType repoType;
+	@Autowired
+	private RepositoryDemande demRepo;
+	
+	
 	
 	@RequestMapping(value="")
 	public String home(Model model) {
@@ -105,6 +112,32 @@ public class Casier {
 	
 	@RequestMapping(value="/suivre")
 	public String suivre(Model model) {
+		model.addAttribute("current","SERVICES");
+		model.addAttribute("ACTION", "connection");
+		return "casier/suivre";
+	}
+	
+	@RequestMapping(value="/verifier", method=RequestMethod.POST)
+	public String suivreMademande(Model model, @RequestParam(name="email")String email ,@RequestParam(name="password") String password ) {
+		Demande d = casierMetier.findByEmailAndPassword(email, password);
+		System.out.println(d);
+		System.out.println(" "+email +" "+password);
+		if(d==null || !d.getType().getName().equals("CASIER")) {
+			model.addAttribute("current","SERVICES");
+			model.addAttribute("current","SERVICES");
+			model.addAttribute("ACTION", "connection");
+			model.addAttribute("error", "Aucune demande n'a été trouvé ! Veuillez vérifier vos coordonnées et réessayer.");
+			return "casier/suivre";
+		}else {
+			model.addAttribute("demande",d);
+			model.addAttribute("ACTION", "connected");
+		}
+		model.addAttribute("current","SERVICES");
+		return "casier/suivre";
+	}
+	
+	@RequestMapping(value="/mademande")
+	public String Mademande(Model model) {
 		model.addAttribute("current","SERVICES");
 		return "casier/suivre";
 	}
