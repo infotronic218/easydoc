@@ -1,0 +1,365 @@
+<!DOCTYPE html  >
+<html xmlns:th="www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+layout:decorator="certificat/certificat.html" lang="fr">
+
+  <head>
+
+   
+   <meta charset="utf-8">
+  </head>
+
+  <body id="page-top">
+   
+   <div layout:fragment="certificat_content" class="container-fluid">
+       <div class="row">
+         <div class="col-12">
+            <div class="card text-dark mb-3">
+               <div class="card-header">
+                  <h4 class="text-center">Soumettre une demande</h4>
+               </div>
+               <div class="card-body">
+                   <div class="row mb-3 dback p-2">
+                      <div class="col">
+                        <span th:if="${ etape ==1}" class="badge badge-primary h1">1</span>
+                        <span th:if="${etape !=1}"  th:class="${etape<1 ?'badge badge-light':'badge badge-success'}">1</span> Identité
+                      </div>
+                      <div class="col"> 
+                        <span th:if="${ etape ==2}" class="badge badge-primary h1">1</span>
+                        <span th:if="${etape !=2}"  th:class="${etape<2 ?'badge badge-light':'badge badge-success'}">2</span> Pièces justificatives
+                      </div>
+                      <div class="col"> 
+                         <span th:if="${ etape ==3}" class="badge badge-primary h1">1</span>
+                         <span th:if="${etape !=3}"  th:class="${etape<3 ?'badge badge-light':'badge badge-success'}">3</span> Confirmation</div>
+                      <div class="col"> 
+                          <span th:if="${ etape ==4}" class="badge badge-primary h1">1</span>
+                        <span th:if="${etape !=4}"  th:class="${etape<4 ?'badge badge-light':'badge badge-success'}">4</span> Etape 4
+                      </div>
+                   </div>
+	               <!-- ETAPE 1 -->
+	               <form th:if="${etape==1}" th:object="${information}" method="post" action="demande/documents">
+	                  <div class="row justify-content-center">
+	                     <div class="col-sm-6">
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Nom de famille</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" th:field="*{nom}" required="required" placeholder="Entrez votre nom de famille"/>
+				                 </div>
+	                        </div>
+	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Prénom(s)</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" required="required" th:field="*{prenom}" placeholder="Entrez votre prénom"/>
+				                 </div>
+	                        </div>
+	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Date de naissance</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" required="required" th:field="*{dateNaissance}" type="date" />
+				                 </div>
+	                        </div>
+	                        
+	                        
+	                         <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Pays de naissance</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <select  required="required" th:field="*{paysNaissance}" class="form-control" >
+				                       <option value="" selected disabled>Selectionner un votre pays de naissance</option>
+				                       <option th:each="c:${countries}"  th:selected="${c.code=='BF'? true:false}" th:value="${c.name}" th:label="${c.name}"></option>
+				                   </select>
+				                 </div>
+	                        </div>
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Lieu de naissance</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" required="required" th:field="*{lieuNaissance}" type="text" placeholder="Entrez votre lieu de naissance"/>
+				                 </div>
+	                        </div>
+	                        
+	              
+	                     </div>
+	                     <div class="col-sm-6">
+	                     
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Nom et prénom du père</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" required="required" type="text" th:field="*{nomPere}" placeholder="Entrez votre le nom et prénom du père"/>
+				                 </div>
+	                        </div>
+	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Nom et prénom de la mère</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" required="required" type="text" th:field="*{nomMere}" placeholder="Entrez votre le nom et prénom de la mère"/>
+				                 </div>
+	                        </div>
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Email</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" required="required" name="email" type="email" placeholder="Entrez votre email"/>
+				                 </div>
+	                        </div>
+	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Numéro de téléphone</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" required="required" th:field="*{telephone}" type="number" placeholder="Entrez votre numéro de téléphone"/>
+				                 </div>
+	                        </div>
+	                     </div>
+	                     <div class="row mb-2 justify-content-center">
+	                             
+				                 
+				                   <button class="btn btn-primary mx-2 m-1" onclick="history.back()" type="button">Retour</button>
+				                   <button class="btn btn-primary m-1" type="submit">Etape Suivante</button>
+				                 
+	                        </div>
+	                  </div>
+	               </form>
+	                <!-- ETAPE 1 -->
+	                <!-- ETAPE 2 -->
+	               <form th:if="${etape==2}" th:object="${document}"  method="post" action="confirmation" enctype="multipart/form-data">
+	                  <div class="row justify-content-center">
+	                     <div class="col-sm-6">
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Type de pièce d'identité</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <select required="required" th:field="*{typePiece}" class="form-control" >
+				                    <option value="" selected disabled>Selectionner un type</option>
+				                    <option value="CNIB">CNIB</option>
+				                    <option value="PASSPORT">PASSPORT</option>
+				                   </select>
+				                 </div>
+	                        </div>
+	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Numéro de la pièce d'identité</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" required="required" th:field="*{numero}" placeholder="Entrez le numéro de la pièce d'identité"/>
+				                 </div>
+	                        </div>
+	              
+	                     </div>
+	                     <div class="col-sm-6">
+	                     
+	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Document d'identité</label>
+				                 </div>
+				                 <div class="col-sm-8"> 
+				                   <input class="form-control" required="required" th:field="*{file}" type="file" />
+				                 </div>
+	                        </div>
+	                        
+	                     </div>
+	                     <div class="row mb-2">
+				                 <div class="col-12">
+				                    <button class="btn btn-primary mx-2" type="submit">Etape précedente</button>
+				                    <button class="btn btn-primary mx-2" type="submit">Etape suivante</button>
+				                 </div>
+				                 <div class="col-sm-8"> 
+				                   
+				                 </div>
+	                        </div>
+	                  </div>
+	               </form>
+	                <!-- ETAPE 2 -->
+	                <!-- ETAPE 3 -->
+	               <form th:if="${etape==3}"   method="post" action="save">
+	                <div class="row justify-content-center">
+	                  <h3 class="text-center">Identité</h3>
+	                </div>
+	                  <div th:if="${session.information!=null}" class="row justify-content-center">
+	                     <div class="col-sm-6">
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Nom de famille</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input readonly="readonly" th:value="${session.information.nom}" class="form-control" />
+				                 </div>
+	                        </div>
+	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Prénom(s)</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" th:value="${session.information.prenom}" readonly="readonly" />
+				                 </div>
+	                        </div>
+	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Date de naissance</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" th:value="${#dates.format(session.information.dateNaissance,'dd/MM/yyyy')}" type="text" readonly="readonly" />
+				                 </div>
+	                        </div>
+	                        
+	                        
+	                         <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Pays de naissance</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" type="text" th:value="${session.information.paysNaissance}" readonly="readonly" />
+				                     
+				                 </div>
+	                        </div>
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Lieu de naissance</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control"  type="text" th:value="${session.information.lieuNaissance}" readonly="readonly"/>
+				                 </div>
+	                        </div>
+	                        
+	              
+	                     </div>
+	                     <div class="col-sm-6">
+	                     
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Nom et prénom du père</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" type="text" th:value="${session.information.nomPere}" readonly="readonly"/>
+				                 </div>
+	                        </div>
+	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Nom et prénom de la mère</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" type="text" th:value="${session.information.nomMere}" readonly="readonly"/>
+				                 </div>
+	                        </div>
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Email</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" type="email" th:value="${session.email}" readonly="readonly"/>
+				                 </div>
+	                        </div>
+	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Numéro de téléphone</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" type="tel" readonly="readonly" th:value="${session.information.telephone}"/>
+				                 </div>
+	                        </div>
+	                         
+	                     </div>
+	                  </div>
+	                  
+		               <div th:if="${session.document!=null}" class="row mb-3 justify-content-center">
+		                  <h3 class="text-center">Pièces justificatives</h3>
+		                  <div class="col-12">
+		                    <div class="row justify-content-center">
+	                     <div class="col-sm-6">
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Type de pièce d'identité</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                    <input class="form-control" th:value="${session.document.typePiece}" readonly="readonly"/>
+				                 </div>
+	                        </div>
+	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Numéro de la pièce d'identité</label>
+				                 </div>
+				                 <div class="col-sm-8">
+				                   <input class="form-control" th:value="${session.document.numero}" readonly="readonly"/>
+				                 </div>
+	                        </div>
+	              
+	                     </div>
+	                     <div class="col-sm-6">
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Document d'identité</label>
+				                 </div>
+				                 <div class="col-sm-8"> 
+				                   <input class="form-control" th:value="${session.document.file.originalFilename}" type="text" readonly="readonly" />
+				                 </div>
+	                        </div>
+	                     </div>
+	                  </div>
+		                  </div>
+		               </div>
+		               
+		               <div class="row mb-2 justify-content-center">
+			                 <div class="col-sm-4 text-center">
+			                   <button class="btn btn-primary" type="submit">Valider</button>
+			                 </div>
+	                  </div>
+	               </form>
+	               <!-- ETAPE 3 -->
+	               <!-- ETAPE 4  -->
+	               <div th:if="${etape==4}" class="row justify-content-center">
+	                 <div class="col-6 border-circle">
+	                    <div class="card-header">
+	                        <div class="row mb-2justify-content-center">
+	                          <div class="col-12">
+	                               <h3 class="text-success text-center">Demande enrégistrée !</h3>
+				                   <p>Votre demande a été enregistré avec succès il sera traité dans le bref delai.
+				                    Un message vous a été envoyé sur votre adresse email, il contient le mot de passe avec laquelle vous devez vous connectez pour suivre l'évolution de votre dossier. </p>
+				                   <p>Pour plus d'information veuillez contactez l'administrateur du service .<P>
+	                          </div>		                   
+	                        </div>
+	                        <div class="row mb-2">
+	                             <div class="col-sm-12 text-center">
+	                             <p class="text-primary"> Cliquez sur le lien sous dessous pour se connecter </p>
+	                               <a class="btn btn-primary mx-3" href="/services/casier/suivre">Suivre ma demande</a>
+	                             </div>
+	                             
+	                             
+	                        </div>
+	                    </div>
+	                   
+	                 </div>
+	               </div>
+	               <!-- ETAPE 4 -->
+                </div>
+             </div>
+         </div>
+       </div>
+   </div>
+   
+  </body>
+
+</html>

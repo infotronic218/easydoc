@@ -18,15 +18,15 @@ layout:decorator="layout.html" lang="fr">
         <div class="row  justify-content-center">
           <div class="col-lg-10 mx-auto">
             <h2 class="text-uppercase text-center">
-              <strong>Casier Judiciaire</strong>
+              <strong>Certificat de nationalité</strong>
             </h2>
           </div>
         </div>
         </div>
         <!-- CONTENT DU CASIER -->
-        <div layout:fragment="casier_content" class="col-12">
+        <div layout:fragment="certificat_content" class="col-12">
              <div class="row  mb-3 justify-content-center">
-                <p class="text-center h5">Déposer une demande ou suivre l'évolution de votre demande d'extrait de casier judicaire .</p>
+                <p class="text-center h5">Déposer une demande ou suivre l'évolution de votre demande d'extrait de certificat de nationalié .</p>
              </div>
 		     <div class="row mb-3  justify-content-center" >
 		        
@@ -39,9 +39,9 @@ layout:decorator="layout.html" lang="fr">
 		                       </div>
 			                    <div class="card-body">
 			                      <p class="text-justify p-1 text-muted" style="font-size: 18px;">
-			                    Déposer une demande d'établissement d'un extrait de votre caiser judiciaire en remplissant les informations démandés.			                    
-			                    </p>
-			                    <a class="btn btn-primary m-2" th:href="@{'/services/casier/demande'}">Déposer ma demande</a>
+			                    Déposer une demande d'établissement d'un extrait de votre certificat de nationalité en remplissant les informations démandés.			                    
+			                      </p>
+			                    <a class="btn btn-primary m-2" th:href="@{'/services/certificat/demande'}">Déposer ma demande</a>
 			                    </div>
 			                    
 			                 </div>
@@ -56,10 +56,10 @@ layout:decorator="layout.html" lang="fr">
 		                        </div>
 			                    <div class="card-body">
 			                     <p class="text-justify text-muted p-1" style="font-size: 18px;">
-			                    Si vous aviez déja déposé une demande pour l'établissement d'un extrait de votre casier judicaire vous pouvez suivre
+			                    Si vous aviez déja déposé une demande pour l'établissement d'un extrait de votre certifcat de nationalié, vous pouvez suivre
 			                     l'évolution du traitément de votre dossier.
 			                    </p>
-			                   <a class="btn btn-primary  m-2" th:href="@{'/services/casier/suivre'}">Suivre mon dossier</a>
+			                      <a class="btn btn-primary  m-2" th:href="@{'/services/certificat/suivre'}">Suivre mon dossier</a>
 			                  
 			                    </div>
 		                      </div>
