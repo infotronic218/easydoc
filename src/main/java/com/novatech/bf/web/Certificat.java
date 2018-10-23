@@ -18,7 +18,7 @@ import com.novatech.bf.dao.RepositoryType;
 import com.novatech.bf.entities.Demande;
 import com.novatech.bf.entities.Document;
 import com.novatech.bf.entities.Information;
-import com.novatech.bf.services.CasierMetier;
+import com.novatech.bf.services.Metier;
 import com.novatech.bf.services.ContryCodeManager;
 
 @Controller
@@ -26,7 +26,7 @@ import com.novatech.bf.services.ContryCodeManager;
 public class Certificat {
 
 	@Autowired
-	private CasierMetier casierMetier;
+	private Metier casierMetier;
 	
 	@Autowired
 	private ContryCodeManager codeManager;
@@ -96,14 +96,14 @@ public class Certificat {
 	public String demandeSave(Model model) {
 		model.addAttribute("current","SERVICES");
 		try {
-			casierMetier.Enregister();
+			casierMetier.saveCertificatDemand();
 			model.addAttribute("etape",4);
 			System.out.println("Donnée enregister");
 		} catch (IOException | MessagingException e) {
 			e.printStackTrace();
 			model.addAttribute("countries", codeManager.getContries());
 			model.addAttribute("etape",4);
-			return "casier/demande";
+			return "certificat/demande";
 		}
 		
 		model.addAttribute("countries", codeManager.getContries());
@@ -127,13 +127,13 @@ public class Certificat {
 			model.addAttribute("current","SERVICES");
 			model.addAttribute("ACTION", "connection");
 			model.addAttribute("error", "Aucune demande n'a été trouvé ! Veuillez vérifier vos coordonnées et réessayer.");
-			return "casier/suivre";
+			return "certificat/suivre";
 		}else {
 			model.addAttribute("demande",d);
 			model.addAttribute("ACTION", "connected");
 		}
 		model.addAttribute("current","SERVICES");
-		return "casier/suivre";
+		return "certificat/suivre";
 	}
 	
 	@RequestMapping(value="/mademande")

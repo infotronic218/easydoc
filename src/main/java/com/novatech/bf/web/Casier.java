@@ -19,14 +19,14 @@ import com.novatech.bf.entities.Demande;
 import com.novatech.bf.entities.Document;
 import com.novatech.bf.entities.Information;
 import com.novatech.bf.entities.Type;
-import com.novatech.bf.services.CasierMetier;
+import com.novatech.bf.services.Metier;
 import com.novatech.bf.services.ContryCodeManager;
 
 @Controller
 @RequestMapping(value="/services/casier")
 public class Casier {
 	@Autowired
-	private CasierMetier casierMetier;
+	private Metier casierMetier;
 	
 	@Autowired
 	private ContryCodeManager codeManager;
@@ -96,7 +96,7 @@ public class Casier {
 	public String demandeSave(Model model) {
 		model.addAttribute("current","SERVICES");
 		try {
-			casierMetier.Enregister();
+			casierMetier.saveCasierDemand();
 			model.addAttribute("etape",4);
 			System.out.println("Donnée enregister");
 		} catch (IOException | MessagingException e) {
