@@ -6,9 +6,11 @@ import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Length;
 @Entity
+@Table(name="eusers")
 public abstract class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
