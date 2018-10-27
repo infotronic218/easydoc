@@ -31,12 +31,13 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="fr">
     </div>
    
     
-   
+  
     <!-- Bootstrap core JavaScript -->
     
-    <script type="text/javascript" th:src="@{'/bootstrap/jquery-3.2.1.slim.min.js'}"></script>
+    <script type="text/javascript" th:src="@{'/bootstrap/jquery.min.js'}"></script>
     <script type="text/javascript" th:src="@{'/bootstrap/popper.min.js'}"></script>
     <script type="text/javascript" th:src="@{'/bootstrap/bootstrap.min.js'}"></script> 
+    <th:block layout:fragment="scripts"></th:block>
 </body>
 
 </html>

@@ -1,11 +1,23 @@
 package com.novatech.bf.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 
-public class User implements Serializable {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import org.hibernate.validator.constraints.Length;
+@Entity
+public abstract class User implements Serializable {
+	private static final long serialVersionUID = 1L;
+	@Id
+	@Length(max=50)
 	private String email;
 	private String password;
-	
+	private boolean active ;
+	@OneToMany
+	private Collection<Role> roles ;
 	public String getEmail() {
 		
 		return email;
@@ -18,6 +30,18 @@ public class User implements Serializable {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public Collection<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(Collection<Role> roles) {
+		this.roles = roles;
+	}
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 	
 

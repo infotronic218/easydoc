@@ -5,7 +5,7 @@ layout:decorator="casier/casier.html" lang="fr">
 
   <head>
 
-   
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
    <meta charset="utf-8">
   </head>
 
@@ -40,17 +40,15 @@ layout:decorator="casier/casier.html" lang="fr">
 			                   <label>Mot de passe <span style="color:red; font-size: 24px;">*</span></label>
 			                 </div>
 			                 <div class="col-sm-8">
-			                   <input class="form-control" type="password" required="required" name="password" placeholder="Entrez votre mot de passe"/>
+			                   <div class="input-group">
+				                   <input class="form-control" id="password" type="password" required="required" name="password" placeholder="Entrez votre mot de passe"/>
+				                   <div class="input-group-append" >
+	                                 <span class="input-group-text " onclick="show()" ><i id="btn" class="fas fa-eye-slash"></i></span>
+	                                </div>
+                                 </div>
 			                 </div>
 	                    </div>
-	                    <div class="row mb-3">
-			                 <div class="col-sm-4">
-			                   <label>Comfirmation du mot de passe <span style="color:red; font-size: 24px;">*</span></label>
-			                 </div>
-			                 <div class="col-sm-8">
-			                   <input class="form-control" type="password" name="confirm" placeholder="Repétez votre mot de passe"/>
-			                 </div>
-	                    </div>
+	                 
 	                    <div class="row mb-3">
 			                 <div class="col-sm-4">
 			                   <button class="btn btn-primary" type="submit">Connecter</button>
@@ -102,7 +100,19 @@ layout:decorator="casier/casier.html" lang="fr">
                </div>
              </div>
         </div>
-        
+        <th:block layout:fragment="scripts">
+          <script type="text/javascript">
+            function show(){
+            	if($('#btn').attr('class')=='fas fa-eye-slash'){
+            		$('#password').attr('type','text');
+            		$('#btn').attr('class','fas fa-eye');
+            	}else{
+            		$('#password').attr('type','password');
+            		$('#btn').attr('class','fas fa-eye-slash');
+            	}
+            }
+          </script>
+        </th:block>
    
   </body>
 
