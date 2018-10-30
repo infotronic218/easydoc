@@ -16,7 +16,6 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 public class Demande implements Serializable {
-	
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
@@ -33,7 +32,8 @@ public class Demande implements Serializable {
 	@DateTimeFormat(iso=ISO.DATE)
 	private Date date;
 	private boolean traite;
-	
+	@OneToOne
+	private Ville reception;
 	public Demande() {
 		date = new Date();
 		traite = false;
@@ -85,6 +85,12 @@ public class Demande implements Serializable {
 	}
 	public void setDocument(Document document) {
 		this.document = document;
+	}
+	public Ville getReception() {
+		return reception;
+	}
+	public void setReception(Ville reception) {
+		this.reception = reception;
 	}
     
 	

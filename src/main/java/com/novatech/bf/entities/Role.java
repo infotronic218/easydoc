@@ -14,6 +14,16 @@ public class Role implements Serializable{
 	@Length(max=20)
 	private String name ;
 	private String description;
+	
+	public Role() {
+		super();
+		
+	}
+	public Role(@Length(max = 20) String name, String description) {
+		super();
+		this.name = name;
+		this.description = description;
+	}
 	public String getName() {
 		return name;
 	}

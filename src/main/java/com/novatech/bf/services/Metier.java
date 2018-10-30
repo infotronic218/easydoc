@@ -24,6 +24,7 @@ import com.novatech.bf.entities.Demande;
 import com.novatech.bf.entities.Document;
 import com.novatech.bf.entities.Information;
 import com.novatech.bf.entities.Type;
+import com.novatech.bf.entities.Ville;
 
 @Service
 @Transactional
@@ -52,10 +53,11 @@ public class Metier {
 		Information information = (Information) session.getAttribute("information");
 		Document document = (Document) session.getAttribute("document");
 		String email = (String) session.getAttribute("email");
+		Ville ville =  (Ville) session.getAttribute("Ville");
 		System.out.println(information);
 		System.out.println(document);
 		System.out.print(email);
-		if(information!=null && document!=null && email!=null) {
+		if(information!=null && document!=null && email!=null && ville!=null) {
 			docRepo.save(document);
 			infoRepo.save(information);
 			Demande demande = new Demande();
@@ -66,6 +68,7 @@ public class Metier {
 			demande.setInformation(information);
 			String pass = generatePass(10);
 			demande.setPassword(encoder.encode(pass));
+			demande.setReception(ville);
 			demandRepo.save(demande);
 			String body="<p>Votre demande de casier judicaire a"
 					+ " été enregistré avec succès.</p>"

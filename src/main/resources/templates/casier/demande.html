@@ -177,10 +177,22 @@ layout:decorator="casier/casier.html" lang="fr">
 				                 </div>
 	                        </div>
 	                        
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Lieu de récupération</label>
+				                 </div>
+				                 <div class="col-sm-8"> 
+				                   <select class="form-control" name="idVille">
+				                   <option selected="selected" disabled="disabled">Selectionner un tribunal de recupération</option>
+				                     <option th:each="v:${villes}" th:value="${v.id}" th:label="${'Tribunal de grande instance de '+ v.name}">Ouaga</option>
+				                   </select>
+				                 </div>
+	                        </div>
+	                        
 	                     </div>
 	                     <div class="row mb-2">
 				                 <div class="col-12">
-				                    <button class="btn btn-primary mx-2" type="submit">Etape précedente</button>
+				                    <button class="btn btn-primary mx-2" onclick="history.back()" type="button">Etape précedente</button>
 				                    <button class="btn btn-primary mx-2" type="submit">Etape suivante</button>
 				                 </div>
 				                 <div class="col-sm-8"> 
@@ -318,6 +330,14 @@ layout:decorator="casier/casier.html" lang="fr">
 				                   <input class="form-control" th:value="${session.document.file.originalFilename}" type="text" readonly="readonly" />
 				                 </div>
 	                        </div>
+	                        <div class="row mb-2">
+				                 <div class="col-sm-4">
+				                   <label>Lieu de récupération</label>
+				                 </div>
+				                 <div class="col-sm-8"> 
+				                   <input class="form-control" th:value="${'Tribunal de grande instance de '+session.ville.name}" type="text" readonly="readonly" />
+				                 </div>
+	                        </div>
 	                     </div>
 	                  </div>
 		                  </div>
@@ -325,7 +345,7 @@ layout:decorator="casier/casier.html" lang="fr">
 		               
 		               <div class="row mb-2 justify-content-center">
 			                 <div class="col-sm-4 text-center">
-			                   <button class="btn btn-primary" type="submit">Valider</button>
+			                   <button class="btn btn-primary" type="submit">Enrégistrer</button>
 			                 </div>
 	                  </div>
 	               </form>

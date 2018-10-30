@@ -1,16 +1,18 @@
 package com.novatech.bf.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.Length;
 @Entity
-@Table(name="eusers")
+@Table(name="tusers")
 public abstract class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -18,6 +20,9 @@ public abstract class User implements Serializable {
 	private String email;
 	private String password;
 	private boolean active ;
+	private String nom;
+	private String prenom;
+	
 	@OneToMany
 	private Collection<Role> roles ;
 	public String getEmail() {
@@ -45,6 +50,32 @@ public abstract class User implements Serializable {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	public String getPrenom() {
+		return prenom;
+	}
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+	@Transient
+	private String confirm;
+	public String getConfirm() {
+		return confirm;
+	}
+	public void setConfirm(String confirm) {
+		this.confirm = confirm;
+	}
 	
+	public void AddRole(Role role) {
+		if(this.roles==null) {
+			this.roles = new ArrayList<>();
+		}
+		roles.add(role);
+	}
 
 }
