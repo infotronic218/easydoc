@@ -1,3 +1,3 @@
 # easydoc
-Projet easy doc  by Novatech
-build with spring boot theamleaf bootstrap
+# Projet easy doc design by sawadogo ousseni
+# build with spring boot theamleaf bootstrap jquery in 2018
